@@ -8,9 +8,11 @@ import {
      Delete,
      Query,
     } from '@nestjs/common';
+import { ProjectsService } from './projects.service';
 
 @Controller('projects')
 export class ProjectsController {
+    constructor(private readonly projectsService: ProjectsService){}
     @Get()
     findAll(@Query()paginationQuery){
         const { limit, offset} = paginationQuery;
