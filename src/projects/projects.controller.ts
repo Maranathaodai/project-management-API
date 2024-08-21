@@ -15,26 +15,26 @@ export class ProjectsController {
     constructor(private readonly projectsService: ProjectsService){}
     @Get()
     findAll(@Query()paginationQuery){
-        const { limit, offset} = paginationQuery;
-    return `This action returns all projects. Limit: ${limit}, offset: ${offset}`;
+       // const { limit, offset} = paginationQuery;
+       return this.projectsService.findAll();
 }
    
     @Get(':id')
     findOne(@Param('id') id: string){
-        return `This action returns a #${id} project`;
+        return this.projectsService.findOne(id);
     }
 
     @Post()
     create(@Body() body){
-        return body;
+        return this.projectsService.create(body);
     }
 
    @Patch(':id')
    update(@Param('id') id: string, @Body() body){
-    return `This action updates #${id} projects`;
+    return this.projectsService.update(id, body);
    }                                                                        
    @Delete(':id')
    remove(@Param('id')id: string){
-    return`This action removes #${id} projects`;
+    return this.projectsService.remove(id);
    }
 }
