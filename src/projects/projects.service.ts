@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { Project } from './entities/project.entity';
 @Injectable()
 export class ProjectsService {
@@ -15,7 +15,11 @@ export class ProjectsService {
         return this.projects;
     }
     findOne(id: string){
-        return this.projects.find(item => item.id ===+id);
+        const project = this.projects.find(item => item.id ===+id);
+        if(!project){
+            throw new NotFoundException(`Project #${id} not found`);
+        }
+        return project;
     }
     create(createProjectDto: any){
         this.projects.push(createProjectDto);
