@@ -14,7 +14,7 @@ export class ProjectsController {
     @Get()
     findAll(@Query()paginationQuery){
         const { limit, offset} = paginationQuery;
-    return 'This action returns all projects. Limit: ${limit}, offset: ${offset}';
+    return `This action returns all projects. Limit: ${limit}, offset: ${offset}`;
 }
    
     @Get(':id')
